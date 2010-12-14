@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 #include "sphinxstem.h"
 
@@ -32,7 +31,7 @@ int main(int argc, const char* argv[]) {
         current_char = 0;
 
       } else {
-        words[current_word][current_char] = tolower(words[current_word][current_char]);
+        words[current_word][current_char] = tolower((char)words[current_word][current_char]);
         current_char++;
       }
     }
