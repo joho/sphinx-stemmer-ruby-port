@@ -2,8 +2,7 @@
 
 #include "sphinxstem.h"
 
-int main(int argc, const char* argv[])
-{
+int main(int argc, const char* argv[]) {
   int total_number_of_words, max_length_of_any_word;
 
   FILE *scrabble_word_list_file;
@@ -15,18 +14,31 @@ int main(int argc, const char* argv[])
   total_number_of_words = 178691;
   max_length_of_any_word = 15;
 
+  // FYI BYTE = typedef unsigned char
   BYTE words[total_number_of_words][max_length_of_any_word + 3];
-  for(int i = 0; i < total_number_of_words; i++) 
-  {
-    fgets(words[i], max_length_of_any_word + 3, scrabble_word_list_file);
+  int current_word = 0;
+  while(current_word < total_number_of_words) {
+    int current_char = 0;
+    if ((words[current_word][current_char] = fgetc(scrabble_word_list_file)) == (BYTE)EOF) {
+      break;
+    }
+    else {
+      if (words[current_word][current_char] == '\n') {
+        current_word++;
+      }
+      else {
+        current_char++;
+      }
+    }
   }
-
-  for(int i = 100; i < 200; i++)
-    printf("%s", words[i]);
-
 
   stem_en_init();
 
+  for(int i = 0; i < total_number_of_words; i++)
+  {
+    stem_en(words[i]);
+    printf("%s", words[i]);
+  }
   // to test
   // stem_en( BYTE * pWord);
   // stem_soundex( BYTE * pWord);
