@@ -20,7 +20,8 @@ int main(int argc, const char* argv[]) {
   int current_char = 0;
   while(current_word < total_number_of_words) {
     if ((words[current_word][current_char] = (BYTE)fgetc(scrabble_word_list_file)) == (BYTE)EOF) {
-      printf("reached end of file");
+      printf("read dictionary in");
+      fclose(scrabble_word_list_file);
       break;
     }
     else {
@@ -37,22 +38,19 @@ int main(int argc, const char* argv[]) {
     }
   }
 
-  stem_en_init();
-
+  FILE *stemmed_dictionary_csv;
+  stemmed_dictionary_csv = fopen("words/stemmed_dictionary.csv", "w");
   for(int i = 0; i < total_number_of_words; i++)
   {
     // printf("%s", words[i]);
     BYTE stemmed[15];
     strcpy((char*)stemmed, (char*)words[i]);
+    
     stem_en(stemmed);
-    if (strcmp((char*)words[i], (char*)stemmed)) {
-      printf("%s %s\n", words[i], stemmed);
-    }
-  }
-  // to test
-  // stem_en( BYTE * pWord);
-  // stem_soundex( BYTE * pWord);
-  // stem_dmetaphone( BYTE * pWord, bool bUTF8);
 
-  printf("yes you have compiled correctly\n");
+    fprintf(stemmed_dictionary_csv, "%s,%s\n", words[i], stemmed);
+  }
+  fclose(stemmed_dictionary_csv);
+
+  printf("outputted stemmed words to csv\n");
 }
