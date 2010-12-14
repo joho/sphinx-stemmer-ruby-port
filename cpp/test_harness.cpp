@@ -4,6 +4,9 @@
 
 int main(int argc, const char* argv[])
 {
+  FILE *scrabble_word_list_file;
+  scrabble_word_list_file = fopen("words/TWL06.txt", "r");
+
   stem_en_init();
 
   // to test
