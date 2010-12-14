@@ -15,7 +15,7 @@ int main(int argc, const char* argv[])
   total_number_of_words = 178691;
   max_length_of_any_word = 15;
 
-  char words[total_number_of_words][max_length_of_any_word + 3];
+  BYTE words[total_number_of_words][max_length_of_any_word + 3];
   for(int i = 0; i < total_number_of_words; i++) 
   {
     fgets(words[i], max_length_of_any_word + 3, scrabble_word_list_file);
