@@ -1,3 +1,5 @@
 *.o
 *.swp
 bin/original_stemmer
+.DS_Store
+
