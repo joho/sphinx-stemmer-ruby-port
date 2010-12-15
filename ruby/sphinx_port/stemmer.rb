@@ -7,7 +7,10 @@ module SphinxPort
     end
 
     def stem
-      @input
+      return @input if @input.length <= 2
+
+
     end
+
   end
 end
