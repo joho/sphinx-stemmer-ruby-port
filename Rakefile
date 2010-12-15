@@ -5,11 +5,17 @@ task :build_sphinx do
 end
 
 desc "run the original stemmer"
-task :run do
+task :run_sphinx do
   system "bin/original_stemmer"
 end
 
-task :build_and_run => [:build_sphinx, :run]
+task :build_and_run => [:build_sphinx, :run_sphinx]
 
-task :default => [:build_and_run]
+desc "run the ruby version of the stemmer"
+task :run_ruby do
+  require 'ruby/test_harness'
+  TestHarness.run("words/stemmed_dictionary.csv")
+end
+
+task :default => [:run_ruby]
 
