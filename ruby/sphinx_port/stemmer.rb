@@ -23,7 +23,7 @@ module SphinxPort
         break unless @output.length == stemming_exception.suffix.length # early abort if the exception clearly won't match the input
         break unless @output == stemming_exception.suffix # then bail out if the strings totally don't match
 
-        @output = "#{@output[0,@output.length-stemming_exception.length_string_to_remove])#{stemming_exception.string_to_add)"
+        @output = "#{@output[0,@output.length-stemming_exception.length_string_to_remove]}#{stemming_exception.string_to_add}"
       end
     end
   end
