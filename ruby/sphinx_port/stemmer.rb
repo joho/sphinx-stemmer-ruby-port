@@ -56,32 +56,32 @@ module SphinxPort
   ]
 
   STEP_1_TABLE = [
-    StemTable.new(1, 1, "enci",		"e" ),
-    StemTable.new(1, 1, "anci",		"e" ),
-    StemTable.new(1, 1, "abli",		"e" ),
-    StemTable.new(1, 1, "bli",		"e" ),
-    StemTable.new(2, 0, "entli",		nil),
-    StemTable.new(3, 0, "aliti",		nil),
-    StemTable.new(2, 0, "ousli",		nil),
-    StemTable.new(3, 1, "iviti",		"e" ),
-    StemTable.new(5, 2, "biliti",	"le" ),
-    StemTable.new(2, 0, "fulli",		nil),
-    StemTable.new(2, 0, "lessli",	nil),
+    StemTable.new(1, "enci",		"e" ),
+    StemTable.new(1, "anci",		"e" ),
+    StemTable.new(1, "abli",		"e" ),
+    StemTable.new(1, "bli",		"e" ),
+    StemTable.new(2, "entli",		nil),
+    StemTable.new(3, "aliti",		nil),
+    StemTable.new(2, "ousli",		nil),
+    StemTable.new(3, "iviti",		"e" ),
+    StemTable.new(5, "biliti",	"le" ),
+    StemTable.new(2, "fulli",		nil),
+    StemTable.new(2, "lessli",	nil),
 
-    StemTable.new(5, 1, "ational",	"e" ),
-    StemTable.new(2, 0, "tional",	nil),
+    StemTable.new(5, "ational",	"e" ),
+    StemTable.new(2, "tional",	nil),
 
-    StemTable.new(3, 0, "alism",		nil),
+    StemTable.new(3, "alism",		nil),
 
-    StemTable.new(5, 1, "ization",	"e" ),
-    StemTable.new(3, 1, "ation",		"e" ),
+    StemTable.new(5, "ization",	"e" ),
+    StemTable.new(3, "ation",		"e" ),
 
-    StemTable.new(1, 0, "izer",		nil),
-    StemTable.new(2, 1, "ator",		"e" ),
+    StemTable.new(1, "izer",		nil),
+    StemTable.new(2, "ator",		"e" ),
 
-    StemTable.new(4, 0, "fulness",	nil),
-    StemTable.new(4, 0, "ousness",	nil),
-    StemTable.new(4, 0, "iveness",	nil)
+    StemTable.new(4, "fulness",	nil),
+    StemTable.new(4, "ousness",	nil),
+    StemTable.new(4, "iveness",	nil)
   ]
 
 	STEP_2_TABLE = [
