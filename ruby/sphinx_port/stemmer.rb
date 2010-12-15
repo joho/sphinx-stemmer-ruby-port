@@ -13,6 +13,8 @@ module SphinxPort
 
       convert_special_y_instances_to_upcase
 
+      find_edges_of_first_two_syllables
+
       # put more in here
       
       convert_upcase_y_chars_back
@@ -33,8 +35,28 @@ module SphinxPort
 
     def convert_special_y_instances_to_upcase
       @output[0] = "Y" if @output[0] == "y"
-      (0..@output.length).each do |char_index| # TODO: double check for off by 1
-        @output[char_index] = "Y" if @output[char_index] == "y" && is_vowel?(@output[char_index - 1])
+      @output.chars.each_with_index do |char, index|
+        @output[index] = "Y" if char == "y" && is_vowel?(char)
+      end
+    end
+      
+    def find_edges_of_first_two_syllables
+      @end_of_first_syllable = @end_of_second_syllable = @output.length
+      if !@output[0..5] == "gener"
+        @end_of_first_syllable = 5
+      else
+        (0...@output.length).each do |char_index|
+          if is_vowel?(@output[char_index,1]) && !is_vowel?(@output[char_index + 1, 1])
+            @end_of_first_syllable = char_index + 2 # why?
+            break
+          end
+        end
+      end
+      (@end_of_first_syllable...@output.length).each do |char_index|
+        if is_vowel?(@output[char_index,1]) && !is_vowel?(@output[char_index + 1, 1])
+          @end_of_second_syllable = char_index + 2 # why?
+          break
+        end
       end
     end
 

@@ -217,6 +217,7 @@ void stem_en ( BYTE * word )
 		if (word[i] == 'y' && stem_en_iv(word[i-1])) word[i] = 'Y';
   // end special y handling
 
+  // find syllable edges
 	r1 = r2 = len;
 	if (strncmp((char*)word, "gener", 5) == 0) {
 		r1 = 5;
@@ -226,6 +227,7 @@ void stem_en ( BYTE * word )
 	}
 	for (i = r1; i < len-1; i++)
 		if (stem_en_iv(word[i]) && !stem_en_iv(word[i+1])) { r2 = i+2; break; }
+  // end syllable edge finder
 
 	#define W(p,c) (word[len-p] == c)
 	#define SUFF2(c2,c1) (len >= 2 && W(1,c1) && W(2,c2))
