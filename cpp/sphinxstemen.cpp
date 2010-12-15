@@ -188,9 +188,11 @@ void stem_en ( BYTE * word )
 {
 	int i, j, len, r1, r2;
 
+  // bust out on short words
 	len = (int)strlen((char*)word);
 	if (len <= 2) return;
 
+  // handle special exceptions
 	for (i = 0; i < (int)(sizeof(en_except)/sizeof(stem_table)); i++) {
 		if (len != en_except[i].len) continue;
 		if (strcmp((char*)word, (char*)en_except[i].suffix)) continue; // FIXME!! slow..
@@ -207,10 +209,13 @@ void stem_en ( BYTE * word )
 		*word = 0;
 		return;
 	}
+  // end special exceptions
 
+  // convert vowelly y chars to upcase (i think) so they can be treated differently later
 	if (word[0] == 'y') word[0] = 'Y';
 	for (i = 1; i < len; i++)
 		if (word[i] == 'y' && stem_en_iv(word[i-1])) word[i] = 'Y';
+  // end special y handling
 
 	r1 = r2 = len;
 	if (strncmp((char*)word, "gener", 5) == 0) {
