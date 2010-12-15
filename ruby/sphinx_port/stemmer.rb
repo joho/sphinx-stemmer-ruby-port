@@ -11,7 +11,11 @@ module SphinxPort
 
       process_exceptions
 
+      convert_special_y_instances_to_upcase
+
+      # put more in here
       
+      convert_upcase_y_chars_back
 
       @output
     end
@@ -25,6 +29,21 @@ module SphinxPort
 
         @output = "#{@output[0,@output.length-stemming_exception.length_string_to_remove]}#{stemming_exception.string_to_add}"
       end
+    end
+
+    def convert_special_y_instances_to_upcase
+      @output[0] = "Y" if @output[0] == "y"
+      (0..@output.length).each do |char_index| # TODO: double check for off by 1
+        @output[char_index] = "Y" if @output[char_index] == "y" && is_vowel?(@output[char_index - 1])
+      end
+    end
+
+    def convert_upcase_y_chars_back
+      @output.gsub!("Y", "y")
+    end
+
+    def is_vowel?(char)
+      %w(a e i o u y).include?(char)
     end
   end
 
